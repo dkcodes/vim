@@ -1,5 +1,5 @@
 " Most important remaps. Include first.
-imap jj <esc>l
+"imap jj <esc>l
 noremap ; :
 noremap : ;
 
