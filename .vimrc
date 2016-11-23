@@ -2,7 +2,6 @@ set nocompatible
 filetype on
 filetype plugin on
 filetype indent on
-"other change
 
 " Most important remaps. Include first.
 se guioptions-=m
