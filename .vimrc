@@ -2,6 +2,7 @@ set nocompatible
 filetype on
 filetype plugin on
 filetype indent on
+"minor change
 
 " Most important remaps. Include first.
 se guioptions-=m
