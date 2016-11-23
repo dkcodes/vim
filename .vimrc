@@ -2,14 +2,13 @@ set nocompatible
 filetype on
 filetype plugin on
 filetype indent on
+"other change
 
 " Most important remaps. Include first.
 se guioptions-=m
 se guioptions-=M
 se wak=no
 inoremap jj <esc>
-" some change
-imap jj <esc>
 noremap ; :
 noremap : ;
 noremap <F3> :source $MYVIMRC<cr>
@@ -53,7 +52,11 @@ Plug 'tomtom/tlib_vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'garbas/vim-snipmate'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'on': []}
+if has('win32') || has('win64')
+    Plug 'Valloric/YouCompleteMe', { 'on': []}
+elseif has('unix')
+    Plug 'Valloric/YouCompleteMe'
+endif
 " Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': 'python install.py' }
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-sensible'
