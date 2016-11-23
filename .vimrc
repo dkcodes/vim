@@ -1,14 +1,25 @@
+set nocompatible           
+filetype on
+filetype plugin on
+filetype indent on
+
 " Most important remaps. Include first.
-imap jj <esc>
+se guioptions-=m
+se guioptions-=M
+se wak=no
+inoremap jj <esc>
 noremap ; :
 noremap : ;
+noremap <F3> :source $MYVIMRC<cr>
 
 "set t_Co=16               "Terminal shows 256 color
-map <F3> ;source ~/.vimrc<cr>
-
 call plug#begin()
-"Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dkcodes/vim-NavIndent'
+Plug 'jeetsukumaran/vim-indentwise'
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'kana/vim-textobj-lastpat'
@@ -38,8 +49,9 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'garbas/vim-snipmate'
-Plug 'SirVer/ultisnips',{ 'on': [] } 
-Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': 'python install.py' }
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe', { 'on': []}
+" Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': 'python install.py' }
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -52,12 +64,7 @@ Plug 'michaeljsmith/vim-indent-object'
 "Plug 'tpope/vim-commentary'
 "Plug 'vim-scripts/TaskList.vim'
 "Plug 'vim-scripts/Gundo'
-"Plug 'davidhalter/jedi-vim'
-"Plug 'xolox/vim-misc'
-"Plug 'vim-scripts/closetag.vim'
 "Plug 'Shougo/neocomplete.vim'
-"Plug 'ervandew/supertab'
-"Plug 'kien/ctrlp.vim'
 "Plug 'scrooloose/nerdcommenter'
 "Plug 'xolox/vim-easytags'
 "Plug 'wincent/Command-T'
@@ -102,9 +109,7 @@ set nobin
 "set display=uhex "show unprintable characters as hex
 colorscheme solarized
 set background=dark
-
 set noswapfile
-set nocompatible           
 "Required for plugins
 set completeopt=menu
 set pastetoggle=<F10>
@@ -120,7 +125,6 @@ set softtabstop=4
 set history=1000
 set nobackup
 set nowritebackup
-set directory=d:/tmp
 set foldmethod=marker
 set foldnestmax=10     
 set foldlevel=99      
@@ -136,8 +140,8 @@ set ignorecase
 set smartcase
 set scrolloff=3
 set ruler
-set wildmenu   
 "command-line completion
+set wildmenu   
 set wildmode=list:longest
 set nohlsearch 
 "Highlight off
@@ -158,18 +162,20 @@ set nojoinspaces
 
 set showfulltag
 set showcmd
-
 set report=0
 set showtabline=0
 set noshowmode
-
 set helpheight=12
 set winminheight=0
 set sidescroll=15
-
 set nostartofline
 set autoindent
 
+if has('unix')
+    set directory=d:/tmp
+elseif has('win32') || has('win64')
+    set directory=/tmp
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """Key map shortcut hotkey
@@ -181,35 +187,31 @@ let g:mapleader=","
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """ syntastic
-"nnoremap <C-F9> ;SyntasticCheck<cr>
+"nnoremap <C-F9> :SyntasticCheck<cr>
 "numbers.vim; toggles relative numbers
-nnoremap <f1> ;numberstoggle<cr>
-"nnoremap <f4> :numbersonoff<cr>
+nnoremap <f1> :NumbersToggle<cr>
 "NERD Tree
-map <leader>t ;NERDTreeToggle<CR>
-"Ack
-nmap <leader>a <Esc>:Ack! 
+nnoremap <leader>t :NERDTreeToggle<CR>
 "MiniBuffExpl"
-nnoremap <F12> ;MBEOpen<CR>
+nnoremap <F12> :MBEOpen<CR>
 " Snipmate with YCM
 " For more snipmate keys see map_keys.vim
 "look for jump and trigger keys
-imap GG <Plug>snipMateNextOrTrigger 
-imap <c-y> <Plug>snipMateNextOrTrigger 
-vmap GG <Plug>snipMateNextOrTrigger 
-vmap <c-y> <Plug>snipMateNextOrTrigger 
-
+inoremap GG <Plug>snipMateNextOrTrigger 
+inoremap <c-y> <Plug>snipMateNextOrTrigger 
+vnoremap GG <Plug>snipMateNextOrTrigger 
+vnoremap <c-y> <Plug>snipMateNextOrTrigger 
 
 " Easy Motion
-map <leader>f <Plug>(easymotion-f)
-map <leader>t <Plug>(easymotion-t)
-map <leader>F <Plug>(easymotion-F)
-map <leader>T <Plug>(easymotion-T)
-map <leader>/ <Plug>(easymotion-sn)
-omap <leader>/ <Plug>(easymotion-tn)
+map <leader><leader>f <Plug>(easymotion-f)
+map <leader><leader>t <Plug>(easymotion-t)
+map <leader><leader>F <Plug>(easymotion-F)
+map <leader><leader>T <Plug>(easymotion-T)
+map <leader><leader>/ <Plug>(easymotion-sn)
+onoremap <leader><leader>/ <Plug>(easymotion-tn)
 "map  n <Plug>(easymotion-next)
 "map  N <Plug>(easymotion-prev)
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
 """ NerdCommenter
@@ -222,13 +224,18 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDSpaceDelims = 1
 
+""" NavIndent
+map <silent> <m-l> <Plug>(NavIndentPreviousLesser)
+map <silent> <m-j> <Plug>(NavIndentNextGreater)
+" map <silent> <m-l> <Plug>(NavIndentNextLesser)
+map <silent> <m-m> <Plug>(NavIndentNextEqual)
+map <silent> <m-,> <Plug>(NavIndentPreviousEqual)
+
 """ Spell checking
-nmap <leader>s ;set spell!<CR>
+nnoremap <leader>s :set spell!<CR>
 set spelllang=en_us
 
-
-nmap <silent> <leader>v ;e $MYVIMRC<CR>
-
+nnoremap <silent> <leader>v :e $MYVIMRC<CR>
 "nnoremap J mzJ`z
 """ Joining with J doesn't move cursor
 "nnoremap n nzz
@@ -238,66 +245,64 @@ nmap <silent> <leader>v ;e $MYVIMRC<CR>
 nnoremap j gj
 nnoremap k gk
 " Does not skip lines when moving with set wrap
-
-nmap <F9> za
+nnoremap <F9> za
 
 nnoremap <c-down> :m .+1<CR>==
-nnoremap <c-up> :m .-2<CR>==
 inoremap <c-down> <Esc>:m .+1<CR>==gi
-inoremap <c-up> <Esc>:m .-2<CR>==gi
 vnoremap <c-down> :m '>+1<CR>gv=gv
+nnoremap <c-up> :m .-2<CR>==
+inoremap <c-up> <Esc>:m .-2<CR>==gi
 vnoremap <c-up> :m '<-2<CR>gv=gv
 
-" Jumping to matching indentation with alt, alt.
-nnoremap <M-.> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
-nnoremap <M-,> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
-
-imap <tab> <c-n>
-
+inoremap <tab> <c-n>
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
 noremap <Up> gk
 noremap <Down> gj
-"map <C-n> :cn<cr>
-"map <C-p> :cp<cr>
-map <C-n> ;bn<cr>
-map <C-p> ;bp<cr>
-
+noremap <C-n> :bn<cr>
+noremap <C-p> :bp<cr>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-map H ^
-map L $
-imap JJK <esc>xepa
-imap JJL <esc>x$pa
-imap JJJ <esc>$a
-imap JJo <esc>$o
-imap JJ) <esc>f)a
-imap JJ" <esc>f"a
-imap JJ' <esc>f'a
-imap JJ] <esc>f]a
+noremap H ^
+noremap L $
+inoremap JJK <esc>xepa
+inoremap JJL <esc>x$pa
+inoremap JJJ <esc>$a
+inoremap JJo <esc>$o
+inoremap JJ) <esc>f)a
+inoremap JJ" <esc>f"a
+inoremap JJ' <esc>f'a
+inoremap JJ] <esc>f]a
 
 nnoremap ' `
 nnoremap ` '
 "noremap x "_x
 "noremap X "_X
 
-""" vim related doc
-" to find what key sequence the terminal is actually receiving
-" <in shell> sed -n l
-" Type the key sequence, if output is ^[j
-" in Vim map <Esc>j command, ^[ is translated by <Esc> in vim
-"mapc : clears all previously mapped keys
+" " " Jumping to matching indentation
+" nnoremap <silent> <m-,> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+" nnoremap <silent> <m-m> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+" fun! Ecx(direction)
+    " let l:spc = indent(".")
+    " let l:tbst = &tabstop
+    " if (a:direction == 0)
+        " call search('^\s\{' . (spc - tbst) . '}\%<' . line('.') . 'l\S', 'be')
+    " else
+        " call search('^\s\{' . (spc + tbst) . '}\%>' . line('.') . 'l\S', 'e')
+    " endif
+" endfun
+" nnoremap <silent> <leader>k :call Ecx(0)<CR>
+" nnoremap <silent> <leader>j :call Ecx(1)<CR>
 
 if has("autocmd")
     augroup myvimrchooks
         au!
-        autocmd bufwritepost .vimrc source ~/.vimrc
+        autocmd bufwritepost .vimrc source $MYVIMRC
     augroup END
 endif
 au VimEnter * RainbowParenthesesToggle
@@ -307,30 +312,43 @@ au Syntax * RainbowParenthesesLoadBraces
 au Syntax * RainbowParenthesesLoadChevrons
 au Syntax * RainbowParenthesesLoadRound
 
-
 """" Remembering folds
-autocmd BufWinLeave *.* mkview
+autocmd BufWinLeave *.* silent mkview
 autocmd BufWinEnter *.* silent loadview
-"
-"""" SimpylFold for python
-"autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-"autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-"
-"""" Lazy loading of some vim plugin
-augroup load_lazy
-    autocmd!
-    autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                \| autocmd! load_lazy
-augroup END
-""
-"""" Troubleshooting aggregates
-"" UltiSnips takes over <tab> key
-"" vi /root/.vim/plugged/ultisnips/autoload/UltiSnips/map_keys.vim
-"" replace <tab> key with GG
-"" source /root/.vim/plugged/vim-snipmate/after/plugin/snipMate.vim
-"
-"
-filetype on
-filetype plugin on
-filetype indent on
 
+" """" Lazy loading of some vim plugin
+" augroup load_lazy
+    " autocmd!
+    " autocmd InsertEnter * call plug#load('YouCompleteMe')
+                " \| autocmd! load_lazy
+" augroup END
+
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
+au FileType vimwiki noremap <buffer> <leader>c :call ToggleCalendar()<CR>
+au FileType vimwiki noremap <buffer> <leader>d :VimwikiMakeDiaryNote<CR>
+
+" """" Troubleshooting aggregates
+" "" UltiSnips takes over <tab> key
+" "" vi /root/.vim/plugged/ultisnips/autoload/UltiSnips/map_keys.vim
+" "" replace <tab> key with GG
+" "" source /root/.vim/plugged/vim-snipmate/after/plugin/snipMate.vim
+
+" """ vim related doc
+" " to find what key sequence the terminal is actually receiving
+" " <in shell> sed -n l
+" " Type the key sequence, if output is ^[j
+" " in Vim map <Esc>j command, ^[ is translated by <Esc> in vim
+" "mapc : clears all previously mapped keys
