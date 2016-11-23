@@ -14,8 +14,10 @@ noremap <F3> :source $MYVIMRC<cr>
 
 "set t_Co=16               "Terminal shows 256 color
 call plug#begin()
-Plug 'sjl/splice.vim'
+" Plug 'sjl/splice.vim'
 " Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dkcodes/vim-NavIndent'
 Plug 'jeetsukumaran/vim-indentwise'
