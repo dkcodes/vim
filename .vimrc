@@ -8,12 +8,15 @@ se guioptions-=m
 se guioptions-=M
 se wak=no
 inoremap jj <esc>
+" some change
+imap jj <esc>
 noremap ; :
 noremap : ;
 noremap <F3> :source $MYVIMRC<cr>
 
 "set t_Co=16               "Terminal shows 256 color
 call plug#begin()
+Plug 'sjl/splice.vim'
 " Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dkcodes/vim-NavIndent'
@@ -181,6 +184,7 @@ endif
 """Key map shortcut hotkey
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=","
+let maplocalleader = "\\"
 noremap \ ,
 let g:mapleader=","
 " vim easy align
