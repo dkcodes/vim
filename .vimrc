@@ -14,9 +14,7 @@ noremap <F3> :source $MYVIMRC<cr>
 
 "set t_Co=16               "Terminal shows 256 color
 call plug#begin()
-" Plug 'sjl/splice.vim'
-" Plug 'kien/ctrlp.vim'
-" Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dkcodes/vim-NavIndent'
@@ -188,7 +186,7 @@ endif
 """Key map shortcut hotkey
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=","
-let maplocalleader = "\\"
+" let maplocalleader = "\\"
 noremap \ ,
 let g:mapleader=","
 " vim easy align
@@ -291,21 +289,6 @@ nnoremap ' `
 nnoremap ` '
 "noremap x "_x
 "noremap X "_X
-
-" " " Jumping to matching indentation
-" nnoremap <silent> <m-,> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
-" nnoremap <silent> <m-m> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
-" fun! Ecx(direction)
-    " let l:spc = indent(".")
-    " let l:tbst = &tabstop
-    " if (a:direction == 0)
-        " call search('^\s\{' . (spc - tbst) . '}\%<' . line('.') . 'l\S', 'be')
-    " else
-        " call search('^\s\{' . (spc + tbst) . '}\%>' . line('.') . 'l\S', 'e')
-    " endif
-" endfun
-" nnoremap <silent> <leader>k :call Ecx(0)<CR>
-" nnoremap <silent> <leader>j :call Ecx(1)<CR>
 
 if has("autocmd")
     augroup myvimrchooks
