@@ -235,6 +235,7 @@ let g:NERDSpaceDelims = 1
 
 """ NavIndent
 map <silent> <m-l> <Plug>(NavIndentPreviousLesser)
+map <silent> <m-k> <Plug>(NavIndentPreviousLesser)
 map <silent> <m-j> <Plug>(NavIndentNextGreater)
 " map <silent> <m-l> <Plug>(NavIndentNextLesser)
 map <silent> <m-m> <Plug>(NavIndentNextEqual)
