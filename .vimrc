@@ -32,7 +32,6 @@ Plug 'sudar/vim-arduino-syntax'
 Plug 'ervandew/supertab' 
 " Allows inserting <tab> without autocompleting
 Plug 'yaroot/vissort'
-Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion'
 Plug 'ternjs/tern_for_vim'
@@ -52,6 +51,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'garbas/vim-snipmate'
 Plug 'SirVer/ultisnips'
 if has('win32') || has('win64')
+    Plug 'altercation/vim-colors-solarized'
     Plug 'Valloric/YouCompleteMe', { 'on': []}
 elseif has('unix')
     Plug 'Valloric/YouCompleteMe'
