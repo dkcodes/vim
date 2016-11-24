@@ -100,19 +100,22 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_sep = '|'
 "let g:airline#extensions#tabline#left_alt_sep = '|'
+
 """ Solarized Colorscheme
-"highlight Normal ctermbg=black
-let g:solarized_italic=0
-let g:solarized_termcolors=16
-let g:solarized_degrade=0
-let g:solarized_bold = 0
-let g:solarized_contrast = "normal"
-let g:solarized_visibility = "normal"
+if has('win32') || has('win64')
+    "highlight Normal ctermbg=black
+    let g:solarized_italic=0
+    let g:solarized_termcolors=16
+    let g:solarized_degrade=0
+    let g:solarized_bold = 0
+    let g:solarized_contrast = "normal"
+    let g:solarized_visibility = "normal"
+    colorscheme solarized
+endif
 
 """ General Vim Setting
 set nobin
 "set display=uhex "show unprintable characters as hex
-colorscheme solarized
 set background=dark
 set noswapfile
 "Required for plugins
